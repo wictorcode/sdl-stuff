@@ -1,6 +1,11 @@
-# Title Here
+# SDL Stuff
 
-Idk, text here
+Just messing around with SDL3.
+
+Stuff I made so far
+
+- Event manager to bind SDL Events and Keycodes to callback functions (addEventListener)
+- ???
 
 ## Building & Running
 ### Building
