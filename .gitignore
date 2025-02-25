@@ -1,7 +1,8 @@
 /build/*
 /bin/*
 /lib/*
-/assets/*
+/assets/* 
 /out/*
 .git
+!.gitkeep
 .vscode
