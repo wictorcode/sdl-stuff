@@ -2,13 +2,7 @@
 #include <SDL3/SDL.h>
 #include "graphics/renderer.h"
 #include "events/event_manager.h"
-
-struct PlayerState {
-  bool UP = false;
-  bool DOWN = false;
-  bool LEFT = false;
-  bool RIGHT = false;
-};
+#include "player.h"
 
 int main()
 {
@@ -28,48 +22,7 @@ int main()
       printf("Hello World");
     });
 
-
-    SDL_FRect playerRectangle = {0, 0, 10, 10};
-    PlayerState playerState = {false, false, false, false};
-
-    // TODO - Get the events and manage the state separately
-
-    
-
-    // Get Player Key movements
-    engine::events::addKeyListener(SDLK_UP, [&playerState](bool isDown) {
-      if (isDown) {
-        playerState.UP = true;
-      } else {
-        playerState.UP = false;
-      }
-    });
-
-    engine::events::addKeyListener(SDLK_DOWN, [&playerState](bool isDown) {
-      if (isDown) {
-        playerState.DOWN = true;
-      } else {
-        playerState.DOWN = false;
-      }
-    });
-
-    engine::events::addKeyListener(SDLK_LEFT, [&playerState](bool isDown) {
-      if (isDown) {
-        playerState.LEFT = true;
-      } else {
-        playerState.LEFT = false;
-      }
-    });
-
-    engine::events::addKeyListener(SDLK_RIGHT, [&playerState](bool isDown) {
-      if (isDown) {
-        playerState.RIGHT = true;
-      } else {
-        playerState.RIGHT = false;
-      }
-    });
-
-
+    game::player::initListeners();
 
     while (!quit)
     {
@@ -85,25 +38,8 @@ int main()
         // PROCESS EVENTS HERE
         engine::events::processEvents();
         //printf("%d, %d, %d, %d\n", playerState.UP, playerState.DOWN, playerState.LEFT, playerState.RIGHT);
+        game::player::update_position();
         
-        
-        if (playerState.UP) {
-          playerRectangle.y -= 1;
-        }
-
-        if (playerState.DOWN) {
-          playerRectangle.y += 1;
-        }
-
-        if (playerState.RIGHT) {
-          playerRectangle.x += 1;
-        }
-
-        if (playerState.LEFT) {
-          playerRectangle.x -= 1;
-        }
-        
-
 /*
   _____  ______ _   _ _____  ______ _____  
  |  __ \|  ____| \ | |  __ \|  ____|  __ \ 
@@ -116,7 +52,7 @@ int main()
         SDL_RenderClear(renderer);
 
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        SDL_RenderFillRect(renderer, &playerRectangle);
+        SDL_RenderFillRect(renderer, game::player::get_player_rectangle());
 
         SDL_RenderPresent(renderer);
         SDL_Delay(16);
