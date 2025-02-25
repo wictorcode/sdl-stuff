@@ -11,7 +11,9 @@ Stuff I made so far
 ### Building
 To build/compile the program automatically , must be on Windows to run `./build.bat`
 
-The libraries are not included in the repo but I have included the exact versions of each library at the end of the file.
+The libraries are not included in the repo so it won't work, but I have included the exact versions of each library at the end of the file.
+
+If you do manage to run it, you should just see an empty 500px by 500px window. Nothing crazy.
 
 ### Running
 If you built it yourself using the given batch script, the program will automatically ask if you want to run it.
