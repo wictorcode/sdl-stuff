@@ -3,6 +3,7 @@
 #include <SDL3/SDL.h>
 #include "events/event_manager.h"
 #include "player.h"
+#include "events/inputs.h"
 
 struct PlayerState {
     bool UP = false;
@@ -11,7 +12,7 @@ struct PlayerState {
     bool RIGHT = false;
 };
 
-namespace game { namespace player {
+namespace Game { namespace Player {
 
     void initListeners();
     void update_position();

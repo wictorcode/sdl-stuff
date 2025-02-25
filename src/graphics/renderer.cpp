@@ -1,6 +1,6 @@
 #include <SDL3/SDL.h>
 
-namespace engine { namespace graphics {
+namespace Engine { namespace Graphics {
 
     SDL_Window* window;
     SDL_Renderer* renderer;

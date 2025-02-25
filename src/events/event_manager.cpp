@@ -3,7 +3,7 @@
 #include <vector>
 #include <unordered_map>
 
-namespace engine {namespace events  {
+namespace Engine {namespace Events  {
     //== EVENT CALLBACKS ==//
     // basically a dictionnary where the key is the event type and the value is a list of functions to call
     // it's so simple that I struggled to get that right

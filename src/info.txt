@@ -1,0 +1,4 @@
+=== HOW TO ADD ACTIONS AND BIND TO KEYS ===
+
+- Go to /src/events/inputs.h  and add the desired action inside of EnumActions
+- (in the same folder) Go to inputs.cpp and scroll down to the initialize() function. Copy/Paste one of the functions you see and change to the action you want
