@@ -9,7 +9,7 @@ Stuff I made so far
 
 ## Building & Running
 ### Building
-To build/compile the program automatically , must be on Windows to run `./build.bat`
+To build/compile the program automatically , must be on Windows to run `./build.bat` (Planning to switch to Lua)
 
 The libraries are not included in the repo so it won't work, but I have included the exact versions of each library at the end of the file.
 

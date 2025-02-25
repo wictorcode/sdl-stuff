@@ -10,13 +10,13 @@ namespace engine {namespace events  {
     std::unordered_map<uint32_t, std::vector<std::function<void(const SDL_Event&)>>> listeners;
     
     //== KEY CALLBACKS ==//
-    std::unordered_map<SDL_Keycode, std::vector<std::function<void()>>> keyListeners;
+    std::unordered_map<SDL_Keycode, std::vector<std::function<void(bool isDown)>>> keyListeners;
     
     void addEventListener(uint32_t type, std::function<void(const SDL_Event&)> callback) {
         listeners[type].push_back(callback);
     }
 
-    void addKeyListener(SDL_Keycode key, std::function<void()> callback) {
+    void addKeyListener(SDL_Keycode key, std::function<void(bool isDown)> callback) {
         keyListeners[key].push_back(callback);
     }
 
@@ -32,11 +32,14 @@ namespace engine {namespace events  {
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
             // key events
-            if (event.type == SDL_EVENT_KEY_DOWN) {
+            if (event.type == SDL_EVENT_KEY_DOWN || event.type == SDL_EVENT_KEY_UP) {
                 SDL_Keycode key = event.key.key;
                 if (keyListeners.count(key) > 0) {
                     for (auto& callback : keyListeners[key]) {
-                        callback();
+                        if (event.type == SDL_EVENT_KEY_DOWN) 
+                            callback(true);
+                        if (event.type == SDL_EVENT_KEY_UP) 
+                            callback(false);
                     }
                 }
             }

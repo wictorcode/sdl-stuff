@@ -3,6 +3,13 @@
 #include "graphics/renderer.h"
 #include "events/event_manager.h"
 
+struct PlayerState {
+  bool UP = false;
+  bool DOWN = false;
+  bool LEFT = false;
+  bool RIGHT = false;
+};
+
 int main()
 {
     SDL_Init(SDL_INIT_VIDEO);
@@ -17,9 +24,52 @@ int main()
       quit = true;
     });
 
-    engine::events::addKeyListener(SDLK_SPACE, []() {
+    engine::events::addKeyListener(SDLK_SPACE, [](bool isDown) {
       printf("Hello World");
     });
+
+
+    SDL_FRect playerRectangle = {0, 0, 10, 10};
+    PlayerState playerState = {false, false, false, false};
+
+    // TODO - Get the events and manage the state separately
+
+    
+
+    // Get Player Key movements
+    engine::events::addKeyListener(SDLK_UP, [&playerState](bool isDown) {
+      if (isDown) {
+        playerState.UP = true;
+      } else {
+        playerState.UP = false;
+      }
+    });
+
+    engine::events::addKeyListener(SDLK_DOWN, [&playerState](bool isDown) {
+      if (isDown) {
+        playerState.DOWN = true;
+      } else {
+        playerState.DOWN = false;
+      }
+    });
+
+    engine::events::addKeyListener(SDLK_LEFT, [&playerState](bool isDown) {
+      if (isDown) {
+        playerState.LEFT = true;
+      } else {
+        playerState.LEFT = false;
+      }
+    });
+
+    engine::events::addKeyListener(SDLK_RIGHT, [&playerState](bool isDown) {
+      if (isDown) {
+        playerState.RIGHT = true;
+      } else {
+        playerState.RIGHT = false;
+      }
+    });
+
+
 
     while (!quit)
     {
@@ -34,6 +84,24 @@ int main()
         
         // PROCESS EVENTS HERE
         engine::events::processEvents();
+        //printf("%d, %d, %d, %d\n", playerState.UP, playerState.DOWN, playerState.LEFT, playerState.RIGHT);
+        
+        
+        if (playerState.UP) {
+          playerRectangle.y -= 1;
+        }
+
+        if (playerState.DOWN) {
+          playerRectangle.y += 1;
+        }
+
+        if (playerState.RIGHT) {
+          playerRectangle.x += 1;
+        }
+
+        if (playerState.LEFT) {
+          playerRectangle.x -= 1;
+        }
         
 
 /*
@@ -46,6 +114,10 @@ int main()
 */
         SDL_SetRenderDrawColor(renderer, 10, 10, 10, 255);
         SDL_RenderClear(renderer);
+
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+        SDL_RenderFillRect(renderer, &playerRectangle);
+
         SDL_RenderPresent(renderer);
         SDL_Delay(16);
     }
