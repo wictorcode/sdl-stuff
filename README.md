@@ -18,7 +18,7 @@ If you do manage to run it, you should just see an empty 500px by 500px window. 
 ### Running
 If you built it yourself using the given batch script, the program will automatically ask if you want to run it.
 
-If you already compiled it and want to run it, go to [the bin folder](https://github.com/wictorcode/sdl-stuff/bin)
+If you already compiled it and want to run it, go to [the bin folder](https://github.com/wictorcode/sdl-stuff/tree/main/bin)
 
 ## Libraries & External Dependencies used
 I did not put the libraries inside of the project because of size issues. So here is the list of libraries used with the exact version.
