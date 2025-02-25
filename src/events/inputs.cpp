@@ -38,13 +38,16 @@ namespace Engine { namespace InputManager {
         // Find what action the old key was mapped to
         auto it = keyMappings.find(oldKey);
         if (it != keyMappings.end()) {
-            EnumActions actionCode = it->second;
+            EnumActions action = it->second;
             
             // Remove the old mapping
             keyMappings.erase(oldKey);
             
+            // Remove the old key listener
+            Engine::Events::removeKeyListener(oldKey);
+            
             // Add the new mapping
-            mapKeyToAction(actionCode, newKey);
+            mapKeyToAction(action, newKey);
         }
     }
     

@@ -5,7 +5,7 @@ Just messing around with SDL3.
 Stuff I made so far
 
 - Event manager to bind SDL Events and Keycodes to callback functions (addEventListener)
-- ???
+- Input Manager; it uses the previously made Event Manager. Allows to predefine actions and to map & remap to given keys
 
 ## Building & Running
 ### Building

@@ -19,6 +19,8 @@ namespace Game {namespace Player {
         Engine::InputManager::bindActionToFunction(ACTION_MOVE_UP, [](bool isDown) {
             playerState.UP = isDown;
         });
+
+        Engine::InputManager::remapKey(SDLK_UP, SDLK_Z);
       
       
         Engine::InputManager::bindActionToFunction(ACTION_MOVE_DOWN, [](bool isDown) {

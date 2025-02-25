@@ -20,6 +20,10 @@ namespace Engine {namespace Events  {
         keyListeners[key].push_back(callback);
     }
 
+    void removeKeyListener(SDL_Keycode key) {
+        keyListeners.erase(key);
+    }
+
     /* Example usage
 
     engine::events::addKeyListener(SDLK_SPACE, []() {
