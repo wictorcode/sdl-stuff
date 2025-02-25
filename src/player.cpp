@@ -36,6 +36,18 @@ namespace Game {namespace Player {
         });
     }
 
+    void reset_position()
+    {
+        playerRectangle.y = 0;
+        playerRectangle.x = 0;
+    }
+
+    void set_position(int x, int y)
+    {
+        playerRectangle.y = y;
+        playerRectangle.x = x;
+    }
+
 
     void update_position()
     {

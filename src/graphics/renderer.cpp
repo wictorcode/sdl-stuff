@@ -7,7 +7,7 @@ namespace Engine { namespace Graphics {
 
     SDL_Window* CreateWindow(const char* windowTitle, int width, int height)
     {
-        window = SDL_CreateWindow(windowTitle, width, height, NULL);
+        window = SDL_CreateWindow(windowTitle, width, height, SDL_WINDOW_RESIZABLE);
         return window;
     }
 

@@ -21,13 +21,13 @@ if not exist .\bin\assets mkdir .\bin\assets
 
 :: commented out because i'm not using it right now
 
-:: g++ -c ".\lib\imgui\imgui.cpp" -o ".\build\imgui.o" -I.\lib\imgui
-:: g++ -c ".\lib\imgui\imgui_draw.cpp" -o ".\build\imgui_draw.o" -I.\lib\imgui
-:: g++ -c ".\lib\imgui\imgui_tables.cpp" -o ".\build\imgui_tables.o" -I.\lib\imgui
-:: g++ -c ".\lib\imgui\imgui_widgets.cpp" -o ".\build\imgui_widgets.o" -I.\lib\imgui
-:: g++ -c ".\lib\imgui\imgui_demo.cpp" -o ".\build\imgui_demo.o" -I.\lib\imgui
-:: g++ -c ".\lib\imgui\backends\imgui_impl_sdl3.cpp" -o ".\build\imgui_impl_sdl3.o" -I.\lib\imgui -I.\lib\SDL\SDL3\include
-:: g++ -c ".\lib\imgui\backends\imgui_impl_sdlrenderer3.cpp" -o ".\build\imgui_impl_sdlrenderer3.o" -I.\lib\imgui -I.\lib\SDL\SDL3\include
+g++ -c ".\lib\imgui\imgui.cpp" -o ".\build\imgui.o" -I.\lib\imgui
+g++ -c ".\lib\imgui\imgui_draw.cpp" -o ".\build\imgui_draw.o" -I.\lib\imgui
+g++ -c ".\lib\imgui\imgui_tables.cpp" -o ".\build\imgui_tables.o" -I.\lib\imgui
+g++ -c ".\lib\imgui\imgui_widgets.cpp" -o ".\build\imgui_widgets.o" -I.\lib\imgui
+g++ -c ".\lib\imgui\imgui_demo.cpp" -o ".\build\imgui_demo.o" -I.\lib\imgui
+g++ -c ".\lib\imgui\backends\imgui_impl_sdl3.cpp" -o ".\build\imgui_impl_sdl3.o" -I.\lib\imgui -I.\lib\SDL\SDL3\include
+g++ -c ".\lib\imgui\backends\imgui_impl_sdlrenderer3.cpp" -o ".\build\imgui_impl_sdlrenderer3.o" -I.\lib\imgui -I.\lib\SDL\SDL3\include
 
 
 

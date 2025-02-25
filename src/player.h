@@ -16,6 +16,8 @@ namespace Game { namespace Player {
 
     void initListeners();
     void update_position();
+    void reset_position();
+    void set_position(int x, int y);
     SDL_FRect* get_player_rectangle();
 
 }}

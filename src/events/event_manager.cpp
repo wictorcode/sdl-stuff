@@ -2,6 +2,9 @@
 #include <functional>
 #include <vector>
 #include <unordered_map>
+#include "imgui.h"
+#include "backends/imgui_impl_sdl3.h"
+#include "backends/imgui_impl_sdlrenderer3.h"
 
 namespace Engine {namespace Events  {
     //== EVENT CALLBACKS ==//
@@ -31,21 +34,36 @@ namespace Engine {namespace Events  {
     });
 
     */
+
+    void triggerAssociatedCallbacks(SDL_Keycode &key, SDL_Event &event)
+    {
+        if (keyListeners.count(key) > 0) {
+            for (auto& callback : keyListeners[key]) {
+                if (event.type == SDL_EVENT_KEY_DOWN) 
+                    callback(true);
+                if (event.type == SDL_EVENT_KEY_UP) 
+                    callback(false);
+            }
+        }
+    }
     
     void processEvents() {
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
+
+
+            ImGui_ImplSDL3_ProcessEvent(&event);
+        
+            // Only process the event with your handlers if ImGui isn't using it
+            if (!ImGui::GetIO().WantCaptureMouse && !ImGui::GetIO().WantCaptureKeyboard) {
+                // Your existing event processing code
+            }
+
+
             // key events
             if (event.type == SDL_EVENT_KEY_DOWN || event.type == SDL_EVENT_KEY_UP) {
                 SDL_Keycode key = event.key.key;
-                if (keyListeners.count(key) > 0) {
-                    for (auto& callback : keyListeners[key]) {
-                        if (event.type == SDL_EVENT_KEY_DOWN) 
-                            callback(true);
-                        if (event.type == SDL_EVENT_KEY_UP) 
-                            callback(false);
-                    }
-                }
+                triggerAssociatedCallbacks(key, event);
             }
             
             // other events

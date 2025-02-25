@@ -35,24 +35,18 @@ namespace Engine { namespace InputManager {
     }
 
     void remapKey(SDL_Keycode oldKey, SDL_Keycode newKey) {
-        // Find what action the old key was mapped to
         auto it = keyMappings.find(oldKey);
+
         if (it != keyMappings.end()) {
             EnumActions action = it->second;
-            
-            // Remove the old mapping
             keyMappings.erase(oldKey);
-            
-            // Remove the old key listener
             Engine::Events::removeKeyListener(oldKey);
-            
-            // Add the new mapping
             mapKeyToAction(action, newKey);
         }
     }
     
 
-    SDL_Keycode getKeyForAction(EnumActions& actionCode) {
+    SDL_Keycode getKeyForAction(EnumActions actionCode) {
         for (const auto& [key, action] : keyMappings) {
             if (action == actionCode) {
                 return key;
