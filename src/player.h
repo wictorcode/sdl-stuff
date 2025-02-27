@@ -14,10 +14,12 @@ struct PlayerState {
 
 namespace Game { namespace Player {
 
+    void initialize();
     void initListeners();
     void update_position();
     void reset_position();
-    void set_position(int x, int y);
+    void set_position(float x, float y);
     SDL_FRect* get_player_rectangle();
+    SDL_Texture* get_player_texture();
 
 }}

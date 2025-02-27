@@ -34,6 +34,7 @@ int main()
       quit = true;
     });
 
+    Game::Player::initialize();
     Game::Player::initListeners();
 
     while (!quit)
@@ -59,8 +60,8 @@ int main()
         ImGui::Begin("Debug Window");
           bool sliderX = ImGui::SliderFloat("X", &Game::Player::get_player_rectangle()->x, 0.0f, 1000.0f, "%.1f");
           bool sliderY = ImGui::SliderFloat("Y", &Game::Player::get_player_rectangle()->y, 0.0f, 1000.0f, "%.1f");
-          bool sliderW = ImGui::SliderFloat("Width", &Game::Player::get_player_rectangle()->w, 0.0f, 1000.0f, "%.1f");
-          bool sliderH = ImGui::SliderFloat("Height", &Game::Player::get_player_rectangle()->h, 0.0f, 1000.0f, "%.1f");
+          bool sliderW = ImGui::SliderFloat("Width", &Game::Player::get_player_rectangle()->w, -500.0f, 500.0f, "%.1f");
+          bool sliderH = ImGui::SliderFloat("Height", &Game::Player::get_player_rectangle()->h, -500.0f, 500.0f, "%.1f");
           if (ImGui::Button("Reset Position"))
           {
               Game::Player::reset_position();
@@ -82,8 +83,11 @@ int main()
         SDL_RenderClear(renderer);
 
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        SDL_RenderFillRect(renderer, Game::Player::get_player_rectangle());
+        //SDL_RenderFillRect(renderer, Game::Player::get_player_rectangle());
 
+        // TODO - change that cuz no way i'm recasting that bitch every frame
+
+        SDL_RenderTexture(renderer, Game::Player::get_player_texture(), NULL, Game::Player::get_player_rectangle());
         ImGui::Render();
         ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), renderer);
 

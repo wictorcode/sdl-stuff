@@ -36,4 +36,14 @@ namespace Engine { namespace Graphics {
         return SDL_GetRenderer(window);
     }
 
+    SDL_Surface* load_bmp_as_texture(const char* filePath)
+    {
+        SDL_LoadBMP(filePath);
+    }
+
+    void destroy_surface(SDL_Surface* surface)
+    {
+        SDL_DestroySurface(surface);
+    }
+
 }}

@@ -3,15 +3,30 @@
 #include "events/event_manager.h"
 #include "events/inputs.h"
 #include "player.h"
+#include "graphics/renderer.h"
 
 namespace Game {namespace Player {
 
-    SDL_FRect playerRectangle = {0, 0, 10, 10};
+    SDL_FRect playerRectangle = {0.0, 0.0, 20.0, 20.0};
+    SDL_Texture* playerTexture;
     PlayerState playerState = {false, false, false, false};
+
+    void initialize() {
+        SDL_Surface* playerSurface = SDL_LoadBMP("assets/club_penguin.bmp");
+        playerTexture = SDL_CreateTextureFromSurface(Engine::Graphics::GetRenderer(), playerSurface);
+        SDL_DestroySurface(playerSurface); // Surfaces are handled by the CPU so we destory that shit and keep GPU handle the texture
+        playerSurface = nullptr;
+    }
+
 
     SDL_FRect* get_player_rectangle()
     {
         return &playerRectangle;
+    }
+
+    SDL_Texture* get_player_texture()
+    {
+        return playerTexture;
     }
 
     void initListeners()
@@ -42,7 +57,7 @@ namespace Game {namespace Player {
         playerRectangle.x = 0;
     }
 
-    void set_position(int x, int y)
+    void set_position(float x, float y)
     {
         playerRectangle.y = y;
         playerRectangle.x = x;

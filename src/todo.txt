@@ -1,0 +1,3 @@
+== TODO ==
+
+- Make some kind of system to encapsulate entities etc... (will make a simply OOP-like system for now; i'll transition to ECS over time for Cache-friendly performances)
